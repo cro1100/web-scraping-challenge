@@ -10,21 +10,22 @@
     
   </head>
 <body>
-
+<!--create a container with a button to start off the webpage
+the button will initiate the python code to scrape the data-->
     <div class="container-fluid">
         <div class="jumbotron text-center">
         <h1>Come visit the wonderful planet of Mars!</h1>
         <p>Moonscapes! Fun facts! Check out the hemispheres!</p>
         <p><a class="btn btn-primary btn-lg" href="/pull_data" role="button">Get Data!</a></p>
         </div>
-        
+      <!--push the headline and body into the webpage-->
         <h2>Latest Mars News! (Aliens beware):</h2>
         <h3 style = "font-family:cambria">{{ mars_data.headline }}</h3></br>
         <h4style = "font-family:cambria">{{ mars_data.body }}</h4>
 
     </div>
 
-
+<!--put the image from the main page on to the page-->
     <div class='row box'>
       <div class='col-md-6 col-md-offset-1'>
         <h3> Latest Mars Image! (Aliens abound!):</h3><br>
@@ -38,7 +39,7 @@
       </div>
 
     </div>
-    
+    <!--insert the images as cards, along with their names-->
     <div class="row">
       <div class='col-md-10 col-md-offset-1'>
         <h2>Mars Hemispheres (beware bad rocks)</h2>
