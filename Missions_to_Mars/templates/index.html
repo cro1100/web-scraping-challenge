@@ -21,12 +21,12 @@ the button will initiate the python code to scrape the data-->
       <!--push the headline and body into the webpage-->
         <h2>Latest Mars News! (Aliens beware):</h2>
         <h3 style = "font-family:cambria">{{ mars_data.headline }}</h3></br>
-        <h4style = "font-family:cambria">{{ mars_data.body }}</h4>
+        <h4 style = "font-family:cambria">{{ mars_data.body }}</h4>
 
     </div>
 
 <!--put the image from the main page on to the page-->
-    <div class='row box'>
+    <div class='row'>
       <div class='col-md-6 col-md-offset-1'>
         <h3> Latest Mars Image! (Aliens abound!):</h3><br>
         <img width = 400px src="{{ mars_data.featured_image_url }}" alt="Featured image">

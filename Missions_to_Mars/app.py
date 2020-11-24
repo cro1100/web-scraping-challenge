@@ -14,7 +14,6 @@ def push_data():
     
     # send list to index.html using data from mongo
     mars_data_app = mongo.db.facts.find_one()
-    print(f"mars_data_app :: {mars_data_app}")
 
     # Return data back to index for use
     return render_template("index.html", mars_data=mars_data_app)
