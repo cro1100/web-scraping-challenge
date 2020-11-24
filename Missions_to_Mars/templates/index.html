@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mars!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+  </head>
+<body>
+
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+        <h1>Come visit the wonderful planet of Mars!</h1>
+        <p>Moonscapes! Fun facts! Check out the hemispheres!</p>
+        <p><a class="btn btn-primary btn-lg" href="/pull_data" role="button">Get Data!</a></p>
+        </div>
+        
+        <h2>Latest Mars News! (Aliens beware):</h2>
+        <h3 style = "font-family:cambria">{{ mars_data.headline }}</h3></br>
+        <h4style = "font-family:cambria">{{ mars_data.body }}</h4>
+
+    </div>
+
+
+    <div class='row box'>
+      <div class='col-md-6 col-md-offset-1'>
+        <h3> Latest Mars Image! (Aliens abound!):</h3><br>
+        <img width = 400px src="{{ mars_data.featured_image_url }}" alt="Featured image">
+      </div>
+      <div class='col-md-4'>
+        <h3>Mars data! Know what the aliens know!</h3>
+        <span>
+          {{ mars_data.tables | safe}}
+        </span>        
+      </div>
+
+    </div>
+    
+    <div class="row">
+      <div class='col-md-10 col-md-offset-1'>
+        <h2>Mars Hemispheres (beware bad rocks)</h2>
+      </div>
+    {% for item in mars_data.images%}  <!--dictionary name-->
+      
+      <div class="col-md-5 col-md-offset-1">
+            
+        <!-- card from bootstrap -->
+        <div class="card" style="width: 18rem;">
+            <img width = 400px class="card-img-top" src="{{item.img_url}}" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{item.title}}</h4>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+    </div>
+
+    </div>
+
+</body>
+</html>

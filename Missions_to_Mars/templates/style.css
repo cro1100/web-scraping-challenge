@@ -1,0 +1,24 @@
+.box{
+  height: 250px;
+  padding: 20px
+}
+
+.ml-1 .extra{
+    margin-left: 40px !important;
+  }
+
+.px-2 .extra{
+  padding-left: 40px !important;
+}
+
+.col-lg-6{
+  margin-left: 40px
+}
+
+.box-1{
+  margin-left: 40px
+}
+
+#font_cambria{
+  margin-left: 40px
+}

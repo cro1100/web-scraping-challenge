@@ -13,20 +13,35 @@ import time
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 
-
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
     executable_path = {"executable_path": ChromeDriverManager().install()}
     return Browser("chrome", **executable_path, headless=False)
 
-# def scrape():
+def scrape():
     # Rather than hvaing a a single function, I'm going to create 4 which 
     # do the individual pieces, then call each of them in this main function
     # This is essentially the same code as the Jupyter Notebook code, 
     # though it passes data differently.
+    headline = news_headline()
+    body = news_body()
+    featured_image_url = image()
+    tables = FAQs()
+    images = hemispheres()
+    print(body)
+    
+    mars_data = {
+        "headline": headline,
+        "body": body,
+        "featured_image_url": featured_image_url,
+        "tables": tables,
+        "images": images
+    }
+    print(tables)
 
+    return mars_data
 
-def news():
+def news_headline():
     # this is the function which will get the news_title and news_paragraph 
     # start by initiating the browser
     browser = init_browser()
@@ -37,9 +52,20 @@ def news():
     # Article title/headline here, under div/content_title in the soup
     articles_list = soup1.find_all('div', class_ = 'content_title')
     headline = articles_list[1].a.text
+    return headline
+
+def news_body():
+    # this is the function which will get the news_title and news_paragraph 
+    # start by initiating the browser
+    browser = init_browser()
+    url1 = 'https://mars.nasa.gov/news/'
+    browser.visit(url1)
+    html1 = browser.html 
+    soup1 = BeautifulSoup(html1, 'lxml')
+    # Article title/headline here, under div/content_title in the soup
     body_list = soup1.find('div', class_='article_teaser_body').text
 
-    return headline, body_list
+    return body_list
 # headline_test = news()
 # print(headline_test)
 
@@ -69,7 +95,9 @@ def FAQs():
     url3 = 'https://space-facts.com/mars/'
     browser.visit(url3)
     tables = pd.read_html(url3)
-    return tables
+    tables = tables[0]
+    output = tables.to_html(index=False, header = None)
+    return output
 
 # tables = FAQs()
 # tables
@@ -92,12 +120,10 @@ def hemispheres():
         html5=browser.html
         soup5 = BeautifulSoup(html5, 'lxml')
         image_url = soup5.find('div', class_='downloads').a['href']
-        
+        image_url = image_url.replace("'", "")
         html_list.append({"title": heading, "img_url": image_url})
         
         browser.back()
         
     return html_list   
 
-images = hemispheres()
-print(images)
